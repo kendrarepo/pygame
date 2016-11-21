@@ -27,6 +27,19 @@ class player(pygame.sprite.Sprite):
 		self.rect.centerx = SCREEN_WIDTH/2
 		self.rect.y = SCREEN_HEIGHT-60
 
+		def update(self): 
+		keys = pygame.key.get_pressed()
+		if keys[pygame.K_RIGHT]:
+			self.rect.x += 6
+		if keys[pygame.K_LEFT]:
+			self.rect.x -= 6
+		if keys[pygame.K_UP]:
+			self.rect.y -= 6
+		if keys[pygame.K_DOWN]:
+			self.rect.y += 6
+
+
+
 gameExit = False
 while not gameExit:
 	for event in pygame.event.get():
