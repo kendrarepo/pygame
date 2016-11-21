@@ -16,11 +16,22 @@ blue = (0, 0, 255)
 gameDisplay = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #initialize with a tuple
 pygame.display.set_caption("Diag Squirrel Dodger") # title
 
+class player(pygame.sprite.Sprite):
+	""" Cretes a squirrel that can be moved by arrow keys"""
+	def __init__(self):
+		pygame.sprite.Sprite.__init__(self) # Calls the sprite initializer
+
+		self.image = pygame.image.load('squirrel.bmp') # Creates the player image
+		self.image = transform.scale(self.image, (60, 60))
+		self.rect = self.image.get_rect()
+		self.rect.centerx = SCREEN_WIDTH/2
+		self.rect.y = SCREEN_HEIGHT-60
+
 gameExit = False
 while not gameExit:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			gameExit = True
-			
+
 pygame.quit() # required
 quit() #exits python
