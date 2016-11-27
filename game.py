@@ -38,6 +38,12 @@ class player(pygame.sprite.Sprite):
 		if keys[pygame.K_DOWN]:
 			self.rect.y += 6
 
+		def update(self):
+		self.rect.y += 10
+		if self.rect.top > SCREEN_HEIGHT + 10:
+			self.rect.x = random.randrange(0, SCREEN_WIDTH-60)
+			self.rect.y = 0
+
 class bus(pygame.sprite.Sprite):
 	"""Creates bluebusses that the player must try to dodge"""
 	def __init__(self):
