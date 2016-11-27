@@ -54,6 +54,14 @@ class bus(pygame.sprite.Sprite):
 		self.rect.x = random.randrange(0, SCREEN_WIDTH-60)
 		self.rect.y = 0
 
+all_sprites = pygame.sprite.Group()
+
+for number in range(2):
+	b = bus()
+	all_sprites.add(b)
+
+player = player()
+all_sprites.add(player)
 
 gameExit = False
 while not gameExit:
