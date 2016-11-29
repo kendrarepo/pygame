@@ -13,6 +13,13 @@ red = (255, 0, 0)
 green = (0, 255, 0)
 blue = (0, 0, 255)
 
+bus_x = random.randrange(0, SCREEN_WIDTH) 
+bus_y = random.randrange(200, SCREEN_HEIGHT) 
+
+pygame.mixer.music.load('cars.wav')
+pygame.mixer.music.set_volume(1)
+pygame.mixer.music.play(loops=-1)
+
 gameDisplay = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #initialize with a tuple
 pygame.display.set_caption("Diag Squirrel Dodger") # title
 
