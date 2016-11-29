@@ -23,6 +23,17 @@ pygame.mixer.music.play(loops=-1)
 gameDisplay = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #initialize with a tuple
 pygame.display.set_caption("Diag Squirrel Dodger") # title
 
+bus_horn = pygame.mixer.Sound('carhorn.wav')
+
+clock = pygame.time.Clock()
+
+background_image = pygame.image.load('road.bmp')
+background_image = transform.scale(background_image, (600, 600))
+background_position = [0,0]
+
+player_image = pygame.image.load('squirrel.bmp')
+bluebus_image = pygame.image.load('bluebus.bmp')
+
 class player(pygame.sprite.Sprite):
 	""" Cretes a squirrel that can be moved by arrow keys"""
 	def __init__(self):
