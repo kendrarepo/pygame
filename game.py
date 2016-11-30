@@ -92,7 +92,11 @@ while not gameExit:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			gameExit = True
+
 	all_sprites.update()
+	if pygame.sprite.collide_rect(player, b):
+		bus_horn.play() # bus honks when squirrel hits it
+		b.move()
 
 pygame.quit() # required
 quit() #exits python
