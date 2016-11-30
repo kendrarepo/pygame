@@ -72,6 +72,12 @@ class bus(pygame.sprite.Sprite):
 		self.rect.x = random.randrange(0, SCREEN_WIDTH-60)
 		self.rect.y = 0
 
+		def move(self): # moves bus off the screen is collision occurs
+	        x = -200
+	        y = 0
+	        self.rect.center = (x,y)
+			
+
 all_sprites = pygame.sprite.Group()
 
 for number in range(2):
