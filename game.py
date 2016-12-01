@@ -34,6 +34,8 @@ background_position = [0,0]
 player_image = pygame.image.load('squirrel.bmp')
 bluebus_image = pygame.image.load('bluebus.bmp')
 
+lives = 3
+
 class player(pygame.sprite.Sprite):
 	""" Cretes a squirrel that can be moved by arrow keys"""
 	def __init__(self):
@@ -95,8 +97,13 @@ while not gameExit:
 
 	all_sprites.update()
 	if pygame.sprite.collide_rect(player, b):
-		bus_horn.play() # bus honks when squirrel hits it
+		bus_horn.play()
+		lives -= 1 # bus honks when squirrel hits it
 		b.move()
+	else:
+		ives = lives
+	if lives <= 0: 
+		gameExit = True
 
 pygame.quit() # required
 quit() #exits python
