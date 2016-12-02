@@ -28,6 +28,30 @@ while (end_it==False):
     gameDisplay.blit(blabel,blabel_rect)
     pygame.display.flip()
 
+entergame=False
+while (entergame==False):
+    gameDisplay.fill(black)
+    myfont=pygame.font.SysFont("Britannic Bold", 20)
+    alabel=myfont.render("Oh no! You just woke up by the Michigan Stadium after a night", True, (white))
+    alabel_rect = alabel.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+    blabel = myfont.render("you can't remember with your friends.", True, (white))
+    blabel_rect = blabel.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2+20))
+    clabel = myfont.render("As a Diag squirrel, you must find your way back to the Diag ", True, (white))
+    clabel_rect = clabel.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2+40))
+    dlabel=myfont.render("before you miss out on all the food.", True, (white))
+    dlabel_rect = dlabel.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2 +60))
+    elabel = myfont.render("Click anywhere on the screen to continue", True, (white))
+    elabel_rect = elabel.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2 +150))
+    for event in pygame.event.get():
+        if event.type==MOUSEBUTTONDOWN:
+            entergame=True
+    gameDisplay.blit(alabel,alabel_rect)
+    gameDisplay.blit(blabel,blabel_rect)
+    gameDisplay.blit(clabel,clabel_rect)
+    gameDisplay.blit(dlabel,dlabel_rect)
+    gameDisplay.blit(elabel,elabel_rect)
+    pygame.display.flip()
+
 bus_x = random.randrange(0, SCREEN_WIDTH) 
 bus_y = random.randrange(200, SCREEN_HEIGHT) 
 
