@@ -105,5 +105,8 @@ while not gameExit:
 	if lives <= 0: 
 		gameExit = True
 
+	alabel=newfont.render(("Lives:" + str(lives)), True, (white))
+	alabel_rect = alabel.get_rect(center = (520, 10))
+
 pygame.quit() # required
 quit() #exits python
