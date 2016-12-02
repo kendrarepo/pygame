@@ -13,6 +13,21 @@ red = (255, 0, 0)
 green = (0, 255, 0)
 blue = (0, 0, 255)
 
+end_it=False
+while (end_it==False):
+    gameDisplay.fill(black)
+    myfont=pygame.font.SysFont("Britannic Bold", 20)
+    nlabel=myfont.render("Diag Squirrel Dodger", True, (white))
+    blabel = myfont.render("Click anywhere on the screen to continue", True, (white))
+    blabel_rect = blabel.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+    nlabel_rect = nlabel.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2 -20))
+    for event in pygame.event.get():
+        if event.type==MOUSEBUTTONDOWN:
+            end_it=True
+    gameDisplay.blit(nlabel,nlabel_rect)
+    gameDisplay.blit(blabel,blabel_rect)
+    pygame.display.flip()
+
 bus_x = random.randrange(0, SCREEN_WIDTH) 
 bus_y = random.randrange(200, SCREEN_HEIGHT) 
 
@@ -35,6 +50,7 @@ player_image = pygame.image.load('squirrel.bmp')
 bluebus_image = pygame.image.load('bluebus.bmp')
 
 lives = 3
+
 
 class player(pygame.sprite.Sprite):
 	""" Cretes a squirrel that can be moved by arrow keys"""
