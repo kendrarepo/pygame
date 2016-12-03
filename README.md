@@ -7,8 +7,7 @@ find your way back to the Diag by dodging the Blue Busses while crossing the roa
 as you can only reach the Diag if you cross the road 3 times. You have 3 lives, but if you run into a Blue Bus you will lose 
 a life. Game will end either when you successfully cross the road 3 times or if you run out of lives.
 
-This game features 3 introduction screens, class inhertiance, horizontal and verticle player movement constrained to the width of the screen,
-background music, collision detection, collision detection noise, and a display of current lives. 
+This game features 3 introduction screens, class inhertiance, horizontal and verticle player movement constrained to the width of the screen, background music, collision detection, collision detection noise, and a display of current lives which functions as "score". 
 
 Resources
 
