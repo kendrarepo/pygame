@@ -13,6 +13,17 @@ red = (255, 0, 0)
 green = (0, 255, 0)
 blue = (0, 0, 255)
 
+# x_pos = 0 # position variables
+# y_pos = 0
+# player_x = 0
+# player_y = 0
+bus_x = random.randrange(0, SCREEN_WIDTH) 
+bus_y = random.randrange(200, SCREEN_HEIGHT) 
+
+#create a surface
+gameDisplay = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #initialize with a tuple
+pygame.display.set_caption("Diag Squirrel Dodger") # title
+
 end_it=False
 while (end_it==False):
     gameDisplay.fill(black)
@@ -52,15 +63,9 @@ while (entergame==False):
     gameDisplay.blit(elabel,elabel_rect)
     pygame.display.flip()
 
-bus_x = random.randrange(0, SCREEN_WIDTH) 
-bus_y = random.randrange(200, SCREEN_HEIGHT) 
-
 pygame.mixer.music.load('cars.wav')
 pygame.mixer.music.set_volume(1)
 pygame.mixer.music.play(loops=-1)
-
-gameDisplay = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #initialize with a tuple
-pygame.display.set_caption("Diag Squirrel Dodger") # title
 
 bus_horn = pygame.mixer.Sound('carhorn.wav')
 
@@ -75,7 +80,6 @@ bluebus_image = pygame.image.load('bluebus.bmp')
 
 lives = 3
 
-
 class player(pygame.sprite.Sprite):
 	""" Cretes a squirrel that can be moved by arrow keys"""
 	def __init__(self):
@@ -87,7 +91,7 @@ class player(pygame.sprite.Sprite):
 		self.rect.centerx = SCREEN_WIDTH/2
 		self.rect.y = SCREEN_HEIGHT-60
 
-		def update(self): 
+	def update(self): 
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_RIGHT]:
 			self.rect.x += 6
@@ -97,12 +101,6 @@ class player(pygame.sprite.Sprite):
 			self.rect.y -= 6
 		if keys[pygame.K_DOWN]:
 			self.rect.y += 6
-
-		def update(self):
-		self.rect.y += 10
-		if self.rect.top > SCREEN_HEIGHT + 10:
-			self.rect.x = random.randrange(0, SCREEN_WIDTH-60)
-			self.rect.y = 0
 
 class bus(pygame.sprite.Sprite):
 	"""Creates bluebusses that the player must try to dodge"""
@@ -114,7 +112,13 @@ class bus(pygame.sprite.Sprite):
 		self.rect.x = random.randrange(0, SCREEN_WIDTH-60)
 		self.rect.y = 0
 
-		def move(self): # moves bus off the screen is collision occurs
+	def update(self):
+		self.rect.y += 10
+		if self.rect.top > SCREEN_HEIGHT + 10:
+			self.rect.x = random.randrange(0, SCREEN_WIDTH-60)
+			self.rect.y = 0
+
+	def move(self): # moves bus off the screen is collision occurs
 	        x = -200
 	        y = 0
 	        self.rect.center = (x,y)
@@ -129,24 +133,43 @@ for number in range(2):
 player = player()
 all_sprites.add(player)
 
+# for i in range(10):
+# 	b = bus(bus_x,bus_y)
+# 	all_sprites.add(b)
+# 	busses.add(b)
+
 gameExit = False
 while not gameExit:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			gameExit = True
 
+	# busses.add(b)
 	all_sprites.update()
 	if pygame.sprite.collide_rect(player, b):
-		bus_horn.play()
-		lives -= 1 # bus honks when squirrel hits it
+		bus_horn.play() # bus honks when squirrel hits it
+		lives -= 1
 		b.move()
 	else:
-		ives = lives
+		lives = lives
 	if lives <= 0: 
 		gameExit = True
-
+		
+	newfont=pygame.font.SysFont("Britannic Bold", 30)
 	alabel=newfont.render(("Lives:" + str(lives)), True, (white))
 	alabel_rect = alabel.get_rect(center = (520, 10))
+	gameDisplay.fill(white) # redraws screen so player can move smoothly
+	gameDisplay.blit(background_image, background_position)
+	gameDisplay.blit(alabel,alabel_rect)
+	all_sprites.draw(gameDisplay)
+	pygame.display.flip()
+
+	if gameExit:
+		gameDisplay.fill(black)
+		myfont=pygame.font.SysFont("Britannic Bold", 20)
+		alabel=myfont.render("Oh no! You just woke up by the Michigan Stadium after a night", True, (white))
+		alabel_rect = alabel.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+		gameDisplay.blit(alabel,alabel_rect)
 
 pygame.quit() # required
 quit() #exits python
